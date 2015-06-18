@@ -62,6 +62,8 @@ Public Class FoodLog
 
     Private Sub LoadControls()
         frmMain = New Form1
+        frmMain.Text = "Food Log"
+
         TabMain = New TabBrowser("TabMain", frmMain, 0, 0, Form1.w - 16, Form1.h - 37, "Entries", False)
         TabMain.AddPage("Recipes", Nothing, Nothing, Nothing, False, False)
         TabMain.AddPage("Food Editor", Nothing, Nothing, Nothing, False, False)
@@ -70,6 +72,7 @@ Public Class FoodLog
         TabMain.ContextMenuStrip = New ContextMenuStrip()
         TCM = TabMain.ContextMenuStrip
         TCM.Items.Add("Exit Without Saving")
+
         AllPages = New List(Of FLPage)
         tabNutrients = New NutrientEditorPage(TabMain.Pages(3)) : AllPages.Add(tabNutrients)
         tabFood = New FoodEditorPage(TabMain.Pages(2)) : AllPages.Add(tabFood)
@@ -77,6 +80,7 @@ Public Class FoodLog
         tabEntries = New FoodLogPage(TabMain.Pages(0)) : AllPages.Add(tabEntries)
         tabEditor = New EditorPage(TabMain.Pages(4)) : AllPages.Add(tabEditor)
         TabMain.SelectPage(0)
+
         AddHandler frmMain.Resize, AddressOf frmMain_Resize
     End Sub
 
@@ -111,7 +115,7 @@ Public Class FoodLog
     End Sub
 
     Private Sub LoadRecipes()
-        Dim sFile As String = CDirectory & "Recipes.txt"
+        Dim sFile As String = DataFolder & "Recipes.txt"
         If Not File.Exists(sFile) Then Exit Sub
         Try
             Using sr As New StreamReader(sFile, System.Text.Encoding.UTF8)
@@ -125,7 +129,7 @@ Public Class FoodLog
     End Sub
 
     Private Sub LoadSites()
-        Dim sFile As String = CDirectory & "Sites.txt"
+        Dim sFile As String = DataFolder & "Sites.txt"
         If Not File.Exists(sFile) Then Exit Sub
         Try
             Dim sr As New StreamReader(sFile, System.Text.Encoding.UTF8)
@@ -152,7 +156,7 @@ Public Class FoodLog
     End Sub
 
     Private Sub SaveSites()
-        Dim sFile As String = CDirectory & "Sites.txt", sTempFile As String = CDirectory & "TEMPSites.txt", sw As StreamWriter = Nothing, sLine As StringBuilder
+        Dim sFile As String = DataFolder & "Sites.txt", sTempFile As String = DataFolder & "TEMPSites.txt", sw As StreamWriter = Nothing, sLine As StringBuilder
         If File.Exists(sTempFile) Then
             If MessageBox.Show("TEMPSites.txt file exists, continue saving?", "Uh do it?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
             File.Delete(sTempFile)
@@ -182,7 +186,7 @@ Public Class FoodLog
     End Sub
 
     Private Sub LoadUnits()
-        Dim sFile As String = CDirectory & "Units.txt"
+        Dim sFile As String = DataFolder & "Units.txt"
         If Not File.Exists(sFile) Then Exit Sub
         Try
             Dim sr As New StreamReader(sFile, System.Text.Encoding.UTF8)
@@ -198,7 +202,7 @@ Public Class FoodLog
     End Sub
 
     Private Sub SaveUnits()
-        Dim sFile As String = CDirectory & "Units.txt", sTempFile As String = CDirectory & "TEMPUnits.txt", sw As StreamWriter = Nothing, sLine As StringBuilder
+        Dim sFile As String = DataFolder & "Units.txt", sTempFile As String = DataFolder & "TEMPUnits.txt", sw As StreamWriter = Nothing, sLine As StringBuilder
         If File.Exists(sTempFile) Then
             If MessageBox.Show("TEMPUnits.txt file exists, continue saving?", "Uh do it?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
             File.Delete(sTempFile)
@@ -225,7 +229,7 @@ Public Class FoodLog
     End Sub
 
     Private Sub LoadNutrients()
-        Dim sFile As String = CDirectory & "Nutrients.txt"
+        Dim sFile As String = DataFolder & "Nutrients.txt"
         If Not File.Exists(sFile) Then Exit Sub
         Try
             Using sr As New StreamReader(sFile)
@@ -241,7 +245,7 @@ Public Class FoodLog
     End Sub
 
     Private Sub LoadFoods()
-        Dim sFile As String = CDirectory & "Foods.txt"
+        Dim sFile As String = DataFolder & "Foods.txt"
         If Not File.Exists(sFile) Then Exit Sub
         Dim swp As New Stopwatch(), fd As FoodItem = Nothing
         swp.Start()
@@ -290,7 +294,7 @@ Public Class FoodLog
     End Sub
 
     Private Sub SaveLogs()
-        Dim sFile As String = CDirectory & "Logs.txt", sTempFile As String = CDirectory & "TEMPLogs.txt"
+        Dim sFile As String = DataFolder & "Logs.txt", sTempFile As String = DataFolder & "TEMPLogs.txt"
         If File.Exists(sTempFile) Then
             If MessageBox.Show("TEMPLogs.txt file exists, continue saving?", "Uh do it?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
             File.Delete(sTempFile)
@@ -314,7 +318,7 @@ Public Class FoodLog
     End Sub
 
     Private Sub LoadLogs()
-        Dim sFile As String = CDirectory & "Logs.txt" '95 = _
+        Dim sFile As String = DataFolder & "Logs.txt" '95 = _
         If Not File.Exists(sFile) Then Exit Sub
         Dim swp As New Stopwatch(), tLog As LogEntry = Nothing
         swp.Start()
@@ -461,7 +465,7 @@ Public Class FoodLog
             Save()
             If Changed Then
                 Changed = False
-                Dim sFile As String = CDirectory & FileName & ".txt", sTempFile As String = CDirectory & "TEMP" & FileName & ".txt"
+                Dim sFile As String = DataFolder & FileName & ".txt", sTempFile As String = DataFolder & "TEMP" & FileName & ".txt"
                 If File.Exists(sTempFile) Then
                     If MessageBox.Show("TEMPFoods.txt file exists, continue saving?", "Uh do it?", MessageBoxButtons.YesNo, MessageBoxIcon.Question) = DialogResult.No Then Exit Sub
                     File.Delete(sTempFile)
@@ -511,7 +515,7 @@ Public Class FoodLog
         Private Sub btnBackup_Click(sender As Object, e As System.EventArgs) Handles btnBackup.Click
             Try
                 Dim sw As New Stopwatch() : sw.Start()
-                Dim BArchive As String = CDirectory & "0Archives\"
+                Dim BArchive As String = DataFolder & "0Archives\"
                 With Date.Now
                     BArchive &= .Year.ToString() & FormatTwoDigits(.Month) & FormatTwoDigits(.Day) & "-" & _
                             FormatTwoDigits(.Hour) & FormatTwoDigits(.Minute) & "\"
@@ -521,12 +525,12 @@ Public Class FoodLog
                     Exit Sub
                 End If
                 Directory.CreateDirectory(BArchive)
-                My.Computer.FileSystem.CopyFile(CDirectory & "Foods.txt", BArchive & "Foods.txt")
-                My.Computer.FileSystem.CopyFile(CDirectory & "Logs.txt", BArchive & "Logs.txt")
-                My.Computer.FileSystem.CopyFile(CDirectory & "Nutrients.txt", BArchive & "Nutrients.txt")
-                My.Computer.FileSystem.CopyFile(CDirectory & "Recipes.txt", BArchive & "Recipes.txt")
-                My.Computer.FileSystem.CopyFile(CDirectory & "Sites.txt", BArchive & "Sites.txt")
-                My.Computer.FileSystem.CopyFile(CDirectory & "Units.txt", BArchive & "Units.txt")
+                My.Computer.FileSystem.CopyFile(DataFolder & "Foods.txt", BArchive & "Foods.txt")
+                My.Computer.FileSystem.CopyFile(DataFolder & "Logs.txt", BArchive & "Logs.txt")
+                My.Computer.FileSystem.CopyFile(DataFolder & "Nutrients.txt", BArchive & "Nutrients.txt")
+                My.Computer.FileSystem.CopyFile(DataFolder & "Recipes.txt", BArchive & "Recipes.txt")
+                My.Computer.FileSystem.CopyFile(DataFolder & "Sites.txt", BArchive & "Sites.txt")
+                My.Computer.FileSystem.CopyFile(DataFolder & "Units.txt", BArchive & "Units.txt")
                 sw.Stop()
                 MsgBox("Files successfully backed up (" & sw.ElapsedMilliseconds.ToString() & " ms)")
             Catch ex As Exception

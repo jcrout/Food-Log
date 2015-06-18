@@ -225,7 +225,6 @@ Public Class DataField : Inherits PanelX
             MsgBox("Error loading " & CFood.Name & " profile " & CSite.Site.Name & ": " & ex.Message)
         End Try
         swp.Stop()
-        frmMain.Text = swp.ElapsedMilliseconds & " ms to load " & CFood.Name & " profile."
     End Sub
 
     Private Function GetLine(ByVal tProp As FoodProperty) As String()

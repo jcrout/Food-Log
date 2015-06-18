@@ -11,13 +11,15 @@ Imports Microsoft.VisualBasic
 Imports System.Linq
 Imports System.Linq.Expressions
 Imports MyControls
+Imports System.IO
 
 Module General
     Public WithEvents frmMain As Form1, F As FoodLog, frmSS As AddSSForm, frmNN As NewNutrientForm
     Public Nutrients As New ItemList(), Foods As New ItemList(), Sites As New ItemList(), ManualSite As DatabaseSite, ComboSite As DatabaseSite
     Public Units As New ItemList(), NCategories As New ItemList(), FCategories As New ItemList(), FCategoriesNA As Item, Recipies As New ItemList()
     Public Logs As New List(Of LogEntry), _Logs As New Dictionary(Of Integer, LogEntry)
-    Public WC As WebClient, CDirectory As String = "", HighestID As Integer = 0
+    Public WC As WebClient, HighestID As Integer = 0
+    Public DataFolder As String
     Public Const _NL As String = "*N*", _ComboFoodStart As String = "***"
 
     <STAThread()>
@@ -25,7 +27,7 @@ Module General
         Dim createdNew As Boolean = True
         Using mutex As New Threading.Mutex(True, "Food Log", createdNew) 'prevents multiiple being open
             If createdNew Then
-                CDirectory = Application.StartupPath & "\"
+                FindResources()
                 WC = New WebClient
                 F = New FoodLog()
                 frmMain.ShowDialog()
@@ -39,6 +41,24 @@ Module General
                 Next
             End If
         End Using
+    End Sub
+
+    Private Sub FindResources()
+        Dim fileloc As New DirectoryInfo(Application.StartupPath)
+        Do
+            Dim folders() As DirectoryInfo = fileloc.GetDirectories()
+            Dim filefolder As DirectoryInfo = folders.FirstOrDefault(Function(x) x.Name = "Data")
+            If filefolder IsNot Nothing Then
+                DataFolder = filefolder.FullName & "\"
+                Exit Do
+            Else
+                If fileloc.Parent Is Nothing Then
+                    System.IO.Directory.CreateDirectory(Application.StartupPath)
+                    Exit Do
+                End If
+                fileloc = fileloc.Parent
+            End If
+        Loop
     End Sub
 
     Public Function GetNextID() As Integer

@@ -47,7 +47,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MyControls">
-      <HintPath>..\MyControls\MyControls\bin\Release\MyControls.dll</HintPath>
+      <HintPath>..\MyControls\MyControls\obj\Debug\MyControls.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

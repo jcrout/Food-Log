@@ -1,0 +1,22 @@
+11|Burger|False||70,1,1;74,1,1;71,0,30;75,0,4;72,0,15;76,0,90
+18|Butter with onions and peppers|True||50,0,0.25;151,0,0.25;186,0,0.25;187,0,0.25
+19|Chili|True|Chili:*N*1 pound ground beef = 455 = .286 = .248*N*1.5 kidney bean cans = 455 each, 683 total = .429 = .373*N*1 chili starter can = 455 (100g pinto, 30g tomato paste estimate) (130g = 680 salt to add) = .286 = .248*N*Tomatoes: probably 45g of 343|161,0,0.248;200,0,0.373;199,0,0.191;156,0,0.057;201,0,0.13;202,0,0.0013
+243|Egg Sandwich|False|2 eggs, 2 tablespoons whole milk|239,0,100;12,0,25;286,0,18;55,1,2;242,0,0.5;256,0,0.6
+15|Eggs and Toast|False||55,1,2;50,1,0.5;115,2,2
+13|Frozen Zucchini/Squash/Onions/Peppers|False||38,0,0;30,0,0;105,0,0;29,0,0
+20|Garlic Salt|True||192,0,0.25;17,0,0.75
+235|Grilled Cheese|False||55,1,2;74,1,2;50,0,4
+308|Homemade Applesauce|True|Applesauce: 1473g fuji apples, 116g water (1/2 cup), probably about 10~g cinnamon, maybe 2g lemon juice*N*Note: the 0.6% cinnamon actually still amounts to 1-1.5 grams per serving, which is why the applesauce has higher fiber than just fuji apples|2,0,0.92;15,0,0.00624;309,0,0.07245;176,0,0.00187
+316|Homemade Applesauce 2|True|1410g fuji apples*N*170g gala apples*N*116g water (used from last time, forgot to measure)*N*10g cinnamon: 8g ground, added 7g cinnamon stick - estimating 2g added, rest avoided*N*6g lemon juice*N*1712g ingredients*N**N*1311g total finished, probably 1320-25 if all was collected|2,0,0.8236;37,0,0.0993;309,0,0.0678;15,0,0.0058;176,0,0.0035
+353|Homemade Applesauce 3|False|717g fuji, 710g red delicious*N*113g water, 37g lemon juice, 12g cinnamon*N*1589g total|2,0,0.451;3,0,0.448;15,0,0.008;309,0,0.07;176,0,0.023
+356|Mashed Acorn Squash|False||100,0,350;50,0,10;256,0,0.5;242,0,0.5
+5|Mixed Bell Peppers|True||28,0,0.333333;29,0,0.333333;27,0,0.333333
+7|PBJ|False||55,1,2;53,0,35;276,0,28;53,0,0
+365|Potato skins with cheese/bacon/scallions|True||173,0,0.8;241,0,0.1;273,0,0.07;272,0,0.03
+3|Quick Oats Breakfast|False||10,0,56;15,0,4;274,0,0.5;17,0,1.5;152,0,14;8,0,120;12,0,274;261,0,0.6;299,0,0.05;313,0,0.125
+12|Sandwich, Turkey and Sharp Cheddar|False||55,1,2;83,0,106;85,0,19
+265|Spaghetti|False||168,0,180;245,0,200;43,0,20
+16|Spaghetti Sauce|True||157,0,0.1;155,0,0.25;160,0,0.25;159,0,0.26;161,0,0.14
+9|Steamers Antioxidant Blend|False||41,0,86;39,0,86;29,0,21;27,0,21;17,0,0.23;68,0,2
+17|Sweet Potato Casserole|True||170,0,0.9;171,0,0.05;12,0,0.05
+237|Tomato Soup|True|1 can tomato soup (1.25 cups), 1/2 can of milk (about .625 cups)|236,0,0.571;12,0,0.429

@@ -1,0 +1,1 @@
+﻿4|0;-1;Gram;g;1|1;0;Milligram;mg;0.001|2;0;Microgram;mcg~µg;1E-06|3;-1;kilocalorie;kcal~Calorie;1|4;-1;International Unit;IU;1
